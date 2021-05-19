@@ -1,0 +1,33 @@
+<h1>Lista de Usuários</h1>
+<p>
+    <a href="user/add" class="btn btn-success">Adicionar Usuário</a>
+</p>
+<table class="table table-condensed table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nome</th>
+            <th>Sobrenome</th>
+            <th>E-mail</th>
+            <th>Status</th>
+            <th>Comprovante</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($this->users as $user) : ?>
+            <tr>
+                <td><?=$user->id?></td>
+                <td><?=$user->name?></td>
+                <td><?=$user->lastname?></td>
+                <td><?=$user->email?></td>
+                <td><?=$user->status ? "Ativo" : "Inativo"?></td>
+                <td><?=$user->file_address ? "<a href='{$user->file_address}'>visualizar</a>" : "Não enviado"?></td>
+                <td>
+                    <a href="<?=$this->url(array('controller' => 'user', 'action' => 'edit', 'id' => $user->id)) ?>"><i class="glyphicon glyphicon-pencil" style="color:green" ></i></a>
+                    <a href="<?=$this->url(array('controller' => 'user', 'action' => 'delete', 'id' => $user->id)) ?>" onclick='return confirm("Você quer realmente apagar esse registro?");'><i style="color:red" class="glyphicon glyphicon-trash"></i></a>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
